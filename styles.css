@@ -1,0 +1,154 @@
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: red; 
+    font-family: "Outfit", sans-serif;
+
+}
+
+.body-col-1{
+    background-color: blue;
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding:1%;
+}
+
+.body-col-2{
+    background-color:white;
+    height: 80%;
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+    justify-content: center;
+}
+
+.k-text-1{
+    font-size:15px;
+    color: black;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 1%;
+    padding-top: 1%;
+}
+
+.k-text-2{
+    font-size:12px;
+    text-align: right;
+    padding-right: 1%;
+    padding-top: 1%;
+
+}
+
+.filter-col-cont{
+    display: flex;
+    flex-direction: row;
+    background-color: yellow;
+    justify-content: flex-start;
+    gap:10px;
+    width: 50%;
+    padding-left: 1%;
+    align-items: center;
+}
+
+.add-filter-cont{
+    display: flex;
+    flex-direction: row;
+    background-color: green;
+    justify-content: flex-end;
+    gap:10px;
+    width: 50%;
+    align-items: center;
+    padding-right: 1%;
+}
+
+.type{
+    height: 40%;
+    background-color: blueviolet;
+    padding: 1%;
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.side-btn{
+    background-color: white;
+    height: 40%;
+    padding:1%;
+}
+
+.col{
+    width: 33%;
+    background-color: yellow;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border-color: black;
+    border-style: solid;
+    border-width: 1px;
+}
+
+.top-col{
+    background-color: blue;
+    height: 8%;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    gap:66%;
+    padding-top: 1%;
+    align-items: center;
+
+}
+
+.menu{
+   background-color: white;
+   width: 10%;
+   height: 40%;
+   justify-self: flex-end;
+   padding: 0.5%;
+   text-align: center;
+}
+
+.card{
+    width: 100%;
+
+}
+
+.card-header-txt{
+
+}
+
+.card-sub-txt{
+
+}
+
+.bottom-holder{
+
+}
+
+.tag-holder{
+
+}
+
+.st-tag{
+    
+}
+
+
+
+/* Colors */
+
+.blue{
+    background-color: blue;
+}
+
+.pink{
+    background-color: pink;
+}
