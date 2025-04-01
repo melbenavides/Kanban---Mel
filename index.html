@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <script src="control.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meow</title>
 </head>
@@ -36,223 +35,75 @@
             <div class="side-btn black">
                 Filter &amp; Sort
             </div>
-            <button id="addBtn" type="button" class="side-btn blue">
+            <button type="button" data-target="#modal-add" class="side-btn blue" onclick="openModal('#modal-add')">
                  Add New Task +
             </button>
         </div>
     </div>
-    <div class="body-col-2">
-        <div class="col">
-            <div class="top-col">
-                <div class="type">
-                    To Do
-                </div>
-                <div class="menu">
-                    . . .
+    <div class="body-col-2" id="kanban-columns">
+    </div>
+<form id="myForm">
+    <div id="modal-add" class="addTaskM">
+        <div id="overlay">
+            <div class="modalHeader">
+                    <p>Add a new task</p>
+                    <button data-target="#modal-add" class="close" onclick="closeModal('#modal-add')">&times;</button>
+            </div>
+            <div class="modalBody">
+                    <p>Effortlessly manage your to-do list: add a new task.</p>
+                    <div class="taskName">
+                        Task Name
+                        <input type="text" id="title" name="title" placeholder="Task Name" required>
+                    </div>
+                    <div class="input-holder">
+
+                        <div class="input-section">
+                            <label for="dueDate">Due date:</label>
+                            <input type="date" id="dueDate">
+                        </div>
+                        <div class="input-section">
+                            <label for="status">Status</label>
+                            <select id="status" name="status">
+                              <option value="todo">To Do</option>
+                              <option value="inprogress">In Progress</option>
+                              <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                    </div>
+                  <div class="input-holder">
+                        <div class="input-section">
+                            <label for="tags">Tags</label>
+                            <select id="tags" name="tags">
+                              <option value="Dev">Dev</option>
+                              <option value="Development">Development</option>
+                              <option value="Marketing">Marketing</option>
+                              <option value="Template">Template</option>
+                              <option value="no-team">No Team</option>
+                            </select>
+                        </div>
+<!--                         <div class="input-section">
+                            <label for="asignees">Asignees</label>
+                            <select id="asignees" name="asignee-list">
+                              <option value="mayad">Mayad Ahmed</option>
+                              <option value="yuhan">Yuhan Ahmed</option>
+                              <option value="mahim">Mahim Ahmed</option>
+                            </select>
+                        </div> -->
+                    </div> 
+                    <div class="desc-holder">
+                        <textarea id="description" name="description" rows="5" cols="20">
+                        </textarea>
+                    </div>
+                    </div>
+                    <div class="modalFooter">
+                        <button type="button" class="side-btn black" onclick="closeModal('#modal-add')">Cancel</button>
+                        <button type="submit" class="side-btn blue" onclick="saveTask()">Add Task</button>
                 </div>
             </div>
-            <div class="btm-col" ondragover="onDragOverCol(event)">
-                <div  draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Finish user onboarding
-                    </div>
-                    <div class="card-sub-txt">
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Tomorrow
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Solve the dribble prioritization issue with the team
-                    </div>
-                    <div class="card-sub-txt">
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Jan 8, 2027
-                            </div>
-                        </div>
-                        <div class="tag-holder">
-                            <div class="tag mkt">
-                                <p>Marketing</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Change license and remove products
-                    </div>
-                    <div class="card-sub-txt">
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Jan 8, 2027
-                            </div>
-                        </div>
-                        <div class="tag-holder">
-                            <div class="tag dev">
-                                <p>Dev</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="top-col">
-                <div class="type">
-                    In Progress
-                </div>
-                <div class="menu">
-                    . . .
-                </div>
-            </div>
-            <div class="btm-col" ondragover="onDragOverCol(event)">
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Work In Progress (WIP) Dashboard
-                    </div>
-                    <div class="card-sub-txt">
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Today
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Kanban Flow Manager
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Feb 12, 2027
-                            </div>
-                        </div>
-                        <div class="tag-holder">
-                            <div class="tag temp">
-                                <p>Template</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Product Update - Q4 2024
-                    </div>
-                    <div class="card-sub-txt">
-                        Dedicated form for a category of users that will perform actions.
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Feb 12, 2017
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Make figbot send comment when ticket is auto-moved back to inbox
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Mar 08, 2027
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col">
-            <div class="top-col">
-                <div class="type">
-                    Completed
-                </div>
-                <div class="menu">
-                    . . .
-                </div>
-            </div>
-            <div class="btm-col" ondragover="onDragOverCol(event)">
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Manage internal feedback
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Tomorrow
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Do some projects on React Native with Flutter
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Jan 8, 2027
-                            </div>
-                        </div>
-                        <div class="tag-holder">
-                            <div class="tag development">
-                                <p>Development</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Design Marketing assets
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Jan 8, 2027
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div draggable="true" ondragstart="onDragStart(event)" class="card">
-                    <div class="card-header-txt">
-                        Kanban Flow Manager
-                    </div>
-                    <div class="bottom-holder">
-                        <div class="tag-holder">
-                            <div class="tag">
-                                <img src="img/cal-icon.png">
-                                Feb 12, 2027
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
-
+</form>
 </body>
+<script src="control.js"></script>
 </html>
