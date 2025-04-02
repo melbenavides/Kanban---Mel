@@ -24,6 +24,7 @@
             <div class="type">
                 To Do
             </div>
+            
             <div class="type">
                 In Progress
             </div>
@@ -41,6 +42,7 @@
         </div>
     </div>
     <div class="body-col-2" id="kanban-columns">
+        
     </div>
 <form id="myForm">
     <div id="modal-add" class="addTaskM">
@@ -58,8 +60,8 @@
                     <div class="input-holder">
 
                         <div class="input-section">
-                            <label for="dueDate">Due date:</label>
-                            <input type="date" id="dueDate">
+                           Due Date
+                            <input type="date" id="dueDate" name="dueDate">
                         </div>
                         <div class="input-section">
                             <label for="status">Status</label>
@@ -74,21 +76,21 @@
                         <div class="input-section">
                             <label for="tags">Tags</label>
                             <select id="tags" name="tags">
-                              <option value="Dev">Dev</option>
-                              <option value="Development">Development</option>
-                              <option value="Marketing">Marketing</option>
-                              <option value="Template">Template</option>
+                              <option value="dev">Dev</option>
+                              <option value="development">Development</option>
+                              <option value="mkt">Marketing</option>
+                              <option value="temp">Template</option>
                               <option value="no-team">No Team</option>
                             </select>
                         </div>
-<!--                         <div class="input-section">
+                        <div class="input-section">
                             <label for="asignees">Asignees</label>
                             <select id="asignees" name="asignee-list">
                               <option value="mayad">Mayad Ahmed</option>
                               <option value="yuhan">Yuhan Ahmed</option>
                               <option value="mahim">Mahim Ahmed</option>
                             </select>
-                        </div> -->
+                        </div>
                     </div> 
                     <div class="desc-holder">
                         <textarea id="description" name="description" rows="5" cols="20">
@@ -97,7 +99,7 @@
                     </div>
                     <div class="modalFooter">
                         <button type="button" class="side-btn black" onclick="closeModal('#modal-add')">Cancel</button>
-                        <button type="submit" class="side-btn blue" onclick="saveTask()">Add Task</button>
+                        <button type="submit" class="side-btn blue" onclick="">Add Task</button>
                 </div>
             </div>
 
