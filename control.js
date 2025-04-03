@@ -79,6 +79,7 @@ function displayNewTask(task) {
 
     const cardSubTxtDiv = document.createElement("div");
     cardSubTxtDiv.classList.add("card-sub-txt");
+    
 
     const bottomHolderDiv = document.createElement("div");
     bottomHolderDiv.classList.add("bottom-holder");
@@ -112,12 +113,15 @@ function displayNewTask(task) {
         tagHolder.appendChild(tagElement);
         bottomHolderDiv.appendChild(tagHolder);
     });
-
-/*     const deleteButton = document.createElement("button");
-    deleteButton.textContent = "Delete";
-    deleteButton.classList.add("delete-btn");
-    deleteButton.addEventListener("click", () => deleteTask(task.id));  */
-
+/* 
+    if (task.assignees) {
+        const assigneesImg = document.createElement("img");
+        assigneesImg.src = `img/${task.assignees.toLowerCase()}.png`; 
+        assigneesImg.alt = task.assignees;
+        assigneesImg.classList.add("assignee-img");
+        cardDiv.appendChild(assigneesImg);
+    } */
+    
     cardDiv.appendChild(cardHeaderTxtDiv);
     cardDiv.appendChild(cardSubTxtDiv);
     cardDiv.appendChild(bottomHolderDiv);
@@ -143,6 +147,7 @@ form.addEventListener('submit', (e) => {
     const newTask = Object.fromEntries(formData);
     newTask.tags = newTask.tags ? newTask.tags.split(',').map(tag => tag.trim()) : [];
     newTask.status = formData.get('status');
+    newTask.assignees = formData.get('assignees');
     newTask.id = tasks.length ? tasks[tasks.length - 1].id + 1 : 1; 
     tasks.push(newTask);
 
@@ -155,25 +160,30 @@ form.addEventListener('submit', (e) => {
 });
 
 
-function deleteTask(taskId) {
-    //find the array index of the item to delete
-    const taskIndex = tasks.findIndex(task => task.id === taskId);
-    if (taskIndex === -1) return;
+function deleteTaskOnDoubleClick() {
+    document.addEventListener('dblclick', (event) => {
+        const cardDiv = event.target.closest('.card');
+        if (!cardDiv) return;
 
-    //remove task from array
-    tasks.splice(taskIndex, 1);
+        const taskId = parseInt(cardDiv.getAttribute('data-id'), 10);
+        const taskIndex = tasks.findIndex(task => task.id === taskId);
+        if (taskIndex === -1) return;
+        tasks.splice(taskIndex, 1);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        cardDiv.remove();
 
-    // save new array to localStorage
-    localStorage.setItem('tasks', JSON.stringify(tasks));
+        console.log(`Task with ID ${taskId} deleted.`);
+    });
 
-    //remove card from dom
-    const taskCard = document.querySelector(`.card[data-id="${taskId}"]`);
-    if (taskCard) {
-        taskCard.remove();
-    }
+    input.addEventListener('keydown', (e) => {  
+        if (e.key === 'Enter') {
+            input.blur(); 
+            document.removeEventListener('dblclick', dblclickListener); 
+        }
 
-    console.log(`Task with ID ${taskId} deleted.`);
+});
 }
+
 
 
 const kanbanColumns = document.getElementById("kanban-columns");
@@ -208,7 +218,7 @@ columns.forEach(column => {
     const option2 = document.createElement("div");
     option2.classList.add("tooltip-option");
     option2.textContent = "Delete Task";
-    option2.onclick = () => console.log(`Edit Column clicked in ${column.title}`);
+    option2.onclick = () => deleteTaskOnDoubleClick();
 
     const option3 = document.createElement("div");
     option3.classList.add("tooltip-option");
@@ -261,8 +271,12 @@ function clearColumn(columnId) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
-function enableInlineEdit() {
-    document.addEventListener('dblclick', (event) => {
+
+function enableInlineEdit(){
+    document.addEventListener('dblclick', dblclickListener);
+}
+
+function dblclickListener(event) {
         const cardHeader = event.target.closest('.card-header-txt');
         if (!cardHeader) return;
 
@@ -294,8 +308,8 @@ function enableInlineEdit() {
 
         input.addEventListener('keydown', (e) => {
             if (e.key === 'Enter') {
-                input.blur();
+                document.removeEventListener('dblclick', dblclickListener); // remove listener to prevent multiple edits
             }
         });
-    });
-}
+    };
+

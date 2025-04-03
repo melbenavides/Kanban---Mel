@@ -112,14 +112,11 @@ body {
 }
 
 .assignee-img {
-    position: absolute;
-    top: 10px;
-    right: 10px;
     width: 30px;
     height: 30px;
     border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid #ccc;
+    padding-left: 25%;
+    position:absolute;
 }
 
 .menu{
@@ -142,6 +139,7 @@ body {
     border-radius: 20px;
     padding-left: 2%;
     padding-top: 2%;
+    position:relative;
 
 }
 
@@ -424,7 +422,7 @@ body {
 }
 
 
-.mkt{
+.marketing{
     background-color: lightblue;
     color: blue;
 }
@@ -434,7 +432,7 @@ body {
     color: black;
 }
 
-.temp{
+.template{
     background-color:lightgreen;
     color:green;
 }
