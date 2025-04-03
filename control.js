@@ -203,7 +203,7 @@ columns.forEach(column => {
     const option1 = document.createElement("div");
     option1.classList.add("tooltip-option");
     option1.textContent = "Edit Task";
-    option1.onclick = () => console.log(`Add Task clicked in ${column.title}`);
+    option1.onclick = () => enableInlineEdit();
 
     const option2 = document.createElement("div");
     option2.classList.add("tooltip-option");
@@ -261,3 +261,41 @@ function clearColumn(columnId) {
     localStorage.setItem('tasks', JSON.stringify(tasks));
 }
 
+function enableInlineEdit() {
+    document.addEventListener('dblclick', (event) => {
+        const cardHeader = event.target.closest('.card-header-txt');
+        if (!cardHeader) return;
+
+        const cardDiv = cardHeader.closest('.card');
+        const taskId = parseInt(cardDiv.getAttribute('data-id'), 10);
+        const task = tasks.find(task => task.id === taskId);
+        if (!task) return;
+
+        const input = document.createElement('input');
+        input.type = 'text';
+        input.value = task.title;
+        input.classList.add('inline-edit-input');
+
+        cardHeader.textContent = '';
+        cardHeader.appendChild(input);
+        input.focus();
+
+        input.addEventListener('blur', () => {
+            const newTitle = input.value.trim();
+            if (newTitle) {
+                task.title = newTitle;
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                cardHeader.textContent = newTitle;
+                console.log(`Task ID ${taskId} title updated to: ${newTitle}`);
+            } else {
+                cardHeader.textContent = task.title; 
+            }
+        });
+
+        input.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                input.blur();
+            }
+        });
+    });
+}
