@@ -18,27 +18,27 @@
     </div>
     <div class="body-col-1">
         <div class="filter-col-cont">
-            <div class="type">
+            <div class="type bg-t">
                 All tasks
             </div>
-            <div class="type">
+            <div class="type bg-t">
                 To Do
             </div>
             
-            <div class="type">
+            <div class="type bg-t">
                 In Progress
             </div>
-            <div class="type">
+            <div class="type bg-t">
                 Completed
             </div>
         </div>
         <div class="add-filter-cont">
-            <div class="side-btn black">
-                Filter &amp; Sort
-            </div>
+            <button type="button" class="side-btn black">Filter &amp; Sort</button>
             <button type="button" data-target="#modal-add" class="side-btn blue" onclick="openModal('#modal-add')">
-                 Add New Task +
-            </button>
+                    Add New Task +
+               </button>
+            </div>
+
         </div>
     </div>
     <div class="body-col-2" id="kanban-columns">
@@ -63,7 +63,7 @@
                            Due Date
                             <input type="date" id="dueDate" name="dueDate">
                         </div>
-                        <div class="input-section">
+                        <div class="input-section" required>
                             <label for="status">Status</label>
                             <select id="status" name="status">
                               <option value="todo">To Do</option>
@@ -97,14 +97,71 @@
                     </div>
                     </div>
                     <div class="modalFooter">
-                        <button type="button" class="side-btn black" onclick="closeModal('#modal-add')">Cancel</button>
-                        <button type="submit" class="side-btn blue" onclick="">Add Task</button>
+                        <button type="button" class="modal-btn black" onclick="closeModal('#modal-add')">Cancel</button>
+                        <button type="submit" class="modal-btn blue" onclick="">Add Task</button>
                 </div>
             </div>
 
         </div>
     </div>
 </form>
+<!-- <form>
+<div id="modal-edit" class="editTaskM">
+    <div id="overlay">
+        <div class="modalHeader">
+            <p>Edit Task</p>
+            <button data-target="#modal-edit" class="close" onclick="closeModal('#modal-edit')">&times;</button>
+        </div>
+        <div class="modalBody">
+            <p>Update the details of your task below.</p>
+            <div class="taskName">
+                Task Name
+                <input type="text" id="edit-title" name="edit-title" placeholder="Task Name" required>
+            </div>
+            <div class="input-holder">
+                <div class="input-section">
+                    Due Date
+                    <input type="date" id="edit-dueDate" name="edit-dueDate" required>
+                </div>
+                <div class="input-section" required>
+                    <label for="edit-status">Status</label>
+                    <select id="edit-status" name="edit-status">
+                        <option value="todo">To Do</option>
+                        <option value="inprogress">In Progress</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="input-holder">
+                <div class="input-section" required>
+                    <label for="edit-tags">Tags</label>
+                    <select id="edit-tags" name="edit-tags">
+                        <option value="dev">Dev</option>
+                        <option value="development">Development</option>
+                        <option value="marketing">Marketing</option>
+                        <option value="template">Template</option>
+                    </select>
+                </div>
+                <div class="input-section" required>
+                    <label for="edit-assignees">Assignees</label>
+                    <select id="edit-assignees" name="edit-assignees">
+                        <option value="mayad">Mayad Ahmed</option>
+                        <option value="yuhan">Yuhan Ahmed</option>
+                        <option value="mahim">Mahim Ahmed</option>
+                    </select>
+                </div>
+            </div>
+            <div class="desc-holder">
+                <textarea id="edit-description" name="edit-description" rows="5" cols="20" placeholder="Task Description"></textarea>
+            </div>
+        </div>
+        <div class="modalFooter">
+            <button type="button" class="modal-btn black" onclick="closeModal('#modal-edit')">Cancel</button>
+            <button type="submit" class="modal-btn blue" onclick="">Save Changes</button>
+        </div>
+    </div>
+</div>  
+</form> -->
 </body>
 <script src="control.js"></script>
 </html>
